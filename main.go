@@ -18,7 +18,14 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	port := fmt.Sprintf(":%v", os.Getenv("HELLO_PORT"))
+	if port == ":" {
+		port = ":8080"
+	}
+
 	message := os.Getenv("HELLO_MESSAGE")
+	if message == "" {
+		message = "Hello World!"
+	}
 
 	handler := &handler{
 		message: message,
