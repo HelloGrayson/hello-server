@@ -16,7 +16,14 @@ Hello World!
 Customize with environmental variables:
 
 ```
-$ docker run -d -p 8081:8081 -e HELLO_MESSAGE="Hello Johnson!" -e HELLO_PORT=8081 breerly/hello-server
+$ docker run -d -p 8081:8081 \
+    -e HELLO_MESSAGE="Hello Johnson!" \
+    -e HELLO_PORT=8081 \
+    -e HELLO_SLEEP=1 \
+    breerly/hello-server
+
+Sleeping for 1 seconds...
+
 $ curl `docker-machine ip default`:8081
 
 Hello World!
@@ -32,6 +39,7 @@ hello:
     environment:
         - HELLO_PORT=8082
         - HELLO_MESSAGE=hello!
+        - HELLO_SLEEP=1
 ```
 
 Note the this image exposes port 8000-8050, so the internal port chosen with `HELLO_PORT` should be within that range.
