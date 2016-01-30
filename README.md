@@ -8,6 +8,9 @@ Run with default settings:
 
 ```
 $ docker run -d -p 8080:8080 breerly/hello-server
+
+2016/01/30 10:16:40 Listening on :8080
+
 $ curl `docker-machine ip default`:8080
 
 Hello World!
@@ -22,7 +25,8 @@ $ docker run -d -p 8081:8081 \
     -e HELLO_SLEEP=1 \
     breerly/hello-server
 
-Sleeping for 1 seconds...
+2016/01/30 10:16:39 Sleeping for 1 seconds...
+2016/01/30 10:16:40 Listening on :8080
 
 $ curl `docker-machine ip default`:8081
 

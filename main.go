@@ -35,7 +35,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("Sleeping for %v seconds...\n", i)
+		log.Printf("Sleeping for %v seconds...\n", i)
 		time.Sleep(time.Duration(i) * time.Second)
 	}
 
