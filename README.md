@@ -46,5 +46,4 @@ hello:
         - HELLO_SLEEP=1
 ```
 
-Note the this image exposes port 8000-8050, so the internal port chosen with `HELLO_PORT` should be within that range.
-
+Cheers!
