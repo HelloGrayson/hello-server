@@ -19,10 +19,11 @@ Hello World!
 Customize with environmental variables:
 
 ```
-$ docker run -d -p 8081:8081 \
+$ docker run -d -p 8080:8080 \
     -e HELLO_MESSAGE="Hello Johnson!" \
-    -e HELLO_PORT=8081 \
+    -e HELLO_PORT=8080 \
     -e HELLO_SLEEP=1 \
+    -e HELLO_STATUS_CODE=404 \
     breerly/hello-server
 
 2016/01/30 10:16:39 Sleeping for 1 seconds...
@@ -41,9 +42,10 @@ hello:
     ports:
         - 8082:8082
     environment:
-        - HELLO_PORT=8082
+        - HELLO_PORT=8080
         - HELLO_MESSAGE=hello!
         - HELLO_SLEEP=1
+        - HELLO_STATUS_CODE=404
 ```
 
 Cheers!
