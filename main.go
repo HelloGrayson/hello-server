@@ -10,11 +10,16 @@ import (
 )
 
 type handler struct {
-	message    string
-	statusCode int
+	message       string
+	statusCode    int
+	responseDelay time.Duration
 }
 
 func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if h.responseDelay > 0 {
+		log.Printf("Sleeping for %i seconds...\n", h.responseDelay)
+		time.Sleep(h.responseDelay * time.Second)
+	}
 	if h.statusCode != 200 {
 		http.Error(w, http.StatusText(h.statusCode), h.statusCode)
 		return
@@ -57,9 +62,20 @@ func main() {
 		code = statusCode
 	}
 
+	responseDelay := 0
+	responseDelayStr := os.Getenv("HELLO_RESPONSE_DELAY")
+	if responseDelayStr != "" {
+		var err error
+		responseDelay, err = strconv.Atoi(responseDelayStr)
+		if err != nil {
+			log.Fatalf("HELLO_RESPONSE_DELAY must be an int, err: %v", err)
+		}
+	}
+
 	handler := &handler{
-		message:    message,
-		statusCode: code,
+		message:       message,
+		statusCode:    code,
+		responseDelay: time.Duration(responseDelay),
 	}
 
 	log.Println("Listening on", port)
